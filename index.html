@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond Carbon | Sustainability Intelligence Platform</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-dark: #0d5a54;
+            --secondary: #0369a1;
+            --accent: #059669;
+            --light: #f0fdfa;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f1f5f9;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .secondary-button:hover {
+            background-color: var(--light);
+        }
+
+        .dashboard-preview {
+            background: var(--white);
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--light-gray);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--gray);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-description {
+            color: var(--gray);
+        }
+
+        /* Questions Section */
+        .questions {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .question-card {
+            background: var(--white);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .question-card.active {
+            border-color: var(--primary);
+            background-color: var(--light);
+        }
+
+        .question-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .question-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .question-answer {
+            color: var(--gray);
+            display: none;
+        }
+
+        .question-card.active .question-answer {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .step-description {
+            color: var(--gray);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features {
+            list-style: none;
+        }
+
+        .product-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button-light {
+            background-color: var(--white);
+            color: var(--primary);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cta-button-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <span class="logo-icon">🌍</span>
+                    Beyond Carbon
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#questions">Questions</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                </ul>
+                <a href="#" class="cta-button">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Quantify Environmental Impacts Beyond Your Operations</h1>
+                    <p>Beyond Carbon delivers comprehensive sustainability intelligence powered by MRIO data to measure Scope 3, trade-embedded impacts, and supply chain risks across carbon, water, land, materials, and jobs.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="cta-button">Start Free Trial</a>
+                        <a href="#" class="secondary-button">View Demo</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="dashboard-preview">
+                        <div class="dashboard-header">
+                            <div class="dashboard-title">Sustainability Intelligence</div>
+                            <div>📅 2023 Data</div>
+                        </div>
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">Scope 3</div>
+                                <div class="stat-label">Supply Chain Impact</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">Carbon</div>
+                                <div class="stat-label">Water Land Materials</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">Hotspots</div>
+                                <div class="stat-label">Risk Exposure</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">Scenarios</div>
+                                <div class="stat-label">What-if Analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Comprehensive Sustainability Intelligence</h2>
+                <p class="section-description">Beyond Carbon quantifies environmental impacts across multiple dimensions with proven MRIO methodologies</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Scope 3 & Trade Impacts</h3>
+                    <p class="feature-description">Measure carbon, water, land, materials, and jobs impacts embedded in your supply chain and trade relationships.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3 class="feature-title">Hotspot Identification</h3>
+                    <p class="feature-description">Pinpoint high-impact regions, sectors, and suppliers driving your environmental footprint.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔮</div>
+                    <h3 class="feature-title">Scenario Modeling</h3>
+                    <p class="feature-description">Test "what-if" scenarios to understand the impact of policy changes, supplier shifts, and strategic decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Fast Answers</h3>
+                    <p class="feature-description">Get instant insights via API or SaaS platform with export capabilities to CSV, Excel, and BI tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Global Coverage</h3>
+                    <p class="feature-description">Built on EXIOBASE, OECD-ICIO, and compatible MRIO datasets for comprehensive global analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Transparent & Auditable</h3>
+                    <p class="feature-description">Full data lineage, GHG Protocol-aligned calculations, and version control for compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions Section -->
+    <section class="questions" id="questions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Answering Your Sustainability Questions</h2>
+                <p class="section-description">Beyond Carbon provides instant answers to complex environmental impact questions</p>
+            </div>
+            <div class="questions-grid">
+                <div class="question-card">
+                    <div class="question-title">
+                        <span>Country Consumption Footprint</span>
+                        <span class="question-icon">+</span>
+                    </div>
+                    <div class="question-answer">
+                        <p>"What is Country X's carbon/material/water footprint by final demand category and by partner country?"</p>
+                        <p>Our platform breaks down consumption-based footprints by sector and trading partner, revealing the true environmental cost of consumption.</p>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-title">
+                        <span>Sector Efficiency Explorer</span>
+                        <span class="question-icon">+</span>
+                    </div>
+                    <div class="question-answer">
+                        <p>"CO₂ per euro output by sector and country. Who is most/least efficient?"</p>
+                        <p>Compare sectoral efficiency across countries to identify best practices and improvement opportunities.</p>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-title">
+                        <span>Embodied Trade Flows</span>
+                        <span class="question-icon">+</span>
+                    </div>
+                    <div class="question-answer">
+                        <p>"Which partner countries and sectors drive imported footprints of electronics/food/construction?"</p>
+                        <p>Trace environmental impacts through global value chains to understand trade-embedded footprints.</p>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-title">
+                        <span>Production vs Consumption</span>
+                        <span class="question-icon">+</span>
+                    </div>
+                    <div class="question-answer">
+                        <p>"Gap between territorial emissions and consumption-based footprint."</p>
+                        <p>Reveal the hidden environmental costs of consumption by comparing production-based to consumption-based accounts.</p>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-title">
+                        <span>Jobs & Value Linkages</span>
+                        <span class="question-icon">+</span>
+                    </div>
+                    <div class="question-answer">
+                        <p>"Jobs and VA embodied in exports/imports by sector."</p>
+                        <p>Understand the employment and value-added implications of environmental policies and trade decisions.</p>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-title">
+                        <span>Time Trends</span>
+                        <span class="question-icon">+</span>
+                    </div>
+                    <div class="question-answer">
+                        <p>"How footprints and intensities changed 1995–latest."</p>
+                        <p>Track environmental performance over time to measure progress and identify emerging trends.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Products</h2>
+                <p class="section-description">Flexible solutions to meet your sustainability intelligence needs</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">🔌</div>
+                    <h3 class="product-title">API</h3>
+                    <p class="product-description">Programmatic access to emission and footprint intensities, multipliers, and detailed breakdowns.</p>
+                    <ul class="product-features">
+                        <li>Emission and footprint intensities</li>
+                        <li>Multipliers by country/sector</li>
+                        <li>Sub-second query performance</li>
+                        <li>Full data lineage</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🖥️</div>
+                    <h3 class="product-title">SaaS Dashboards</h3>
+                    <p class="product-description">Interactive visualization platform with hotspot maps, trade chain analysis, and scenario testing.</p>
+                    <ul class="product-features">
+                        <li>Hotspot maps and visualizations</li>
+                        <li>Trade chain analysis</li>
+                        <li>Scenario testing capabilities</li>
+                        <li>Team collaboration workspaces</li>
+                    </ul>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">📥</div>
+                    <h3 class="product-title">Data Feeds</h3>
+                    <p class="product-description">Pre-aggregated factors for integration with ERP, BI, and other enterprise systems.</p>
+                    <ul class="product-features">
+                        <li>Pre-aggregated factors</li>
+                        <li>ERP/BI system integration</li>
+                        <li>Scheduled data refresh</li>
+                        <li>Customizable data formats</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How Beyond Carbon Works</h2>
+                <p class="section-description">Get comprehensive sustainability intelligence in just a few simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Connect Data Sources</h3>
+                    <p class="step-description">Integrate your enterprise data with our MRIO databases for comprehensive analysis.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Configure Analysis</h3>
+                    <p class="step-description">Select your focus areas: Scope 3, hotspots, scenarios, or specific sectors/countries.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Analyze & Model</h3>
+                    <p class="step-description">Use our tools to uncover insights, test scenarios, and identify improvement opportunities.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Report & Act</h3>
+                    <p class="step-description">Generate reports, share insights, and implement data-driven sustainability strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Go Beyond Carbon?</h2>
+                <p class="cta-description">Join sustainability leaders leveraging MRIO data for comprehensive environmental impact measurement.</p>
+                <button class="cta-button-light">Start Your Free 14-Day Trial</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Beyond Carbon</h3>
+                    <p>Quantifying environmental impacts beyond your operations with MRIO-powered intelligence.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">SaaS Dashboards</a></li>
+                        <li><a href="#">Data Feeds</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Beyond Carbon. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Question card toggle functionality
+        const questionCards = document.querySelectorAll('.question-card');
+        questionCards.forEach(card => {
+            const title = card.querySelector('.question-title');
+            title.addEventListener('click', () => {
+                card.classList.toggle('active');
+                const icon = title.querySelector('.question-icon');
+                icon.textContent = card.classList.contains('active') ? '−' : '+';
+            });
+        });
+
+        // Simple animation on scroll for feature cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        featureCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
